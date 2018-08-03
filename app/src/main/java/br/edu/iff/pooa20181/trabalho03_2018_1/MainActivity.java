@@ -1,5 +1,6 @@
 package br.edu.iff.pooa20181.trabalho03_2018_1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,14 +22,16 @@ public class MainActivity extends AppCompatActivity {
         this.btnMecanico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this,"Teste" ,Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this, MecanicoListActivity.class);
+                startActivity(intent);
             }
         });
 
         this.btnOficina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this,"Teste" ,Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this, OficinaListActivity.class);
+                startActivity(intent);
             }
         });
 
