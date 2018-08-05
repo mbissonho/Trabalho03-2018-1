@@ -23,7 +23,9 @@
         <activity
             android:name=".OficinaListActivity"
             android:label="OficinaListActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ManageMecanicoActivity" android:label="ManageMecanicoActivity" />
+        <activity android:name=".ManageOficinaActivity"></activity>
     </application>
 
 </manifest>

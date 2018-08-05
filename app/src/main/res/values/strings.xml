@@ -2,4 +2,5 @@
     <string name="app_name">Trabalho03-2018-1</string>
     <string name="title_activity_mecanico_list">MecanicoListActivity</string>
     <string name="title_activity_oficina_list">OficinaListActivity</string>
+    <string name="title_activity_manage_oficina">ManageOficinaActivity</string>
 </resources>

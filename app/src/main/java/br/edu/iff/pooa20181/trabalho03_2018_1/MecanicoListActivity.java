@@ -1,5 +1,6 @@
 package br.edu.iff.pooa20181.trabalho03_2018_1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,8 +21,8 @@ public class MecanicoListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MecanicoListActivity.this, ManageMecanicoActivity.class);
+                startActivity(intent);
             }
         });
     }
