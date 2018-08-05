@@ -2,7 +2,7 @@ package br.edu.iff.pooa20181.trabalho03_2018_1.model;
 
 public class Mecanico {
 
-    private String nome, rua, bairro, dataDeNascimento, municipio;
+    private String nome, funcao, rua, bairro, dataDeNascimento, municipio;
     private Double latitude, longitude;
 
     public Mecanico(){
@@ -15,6 +15,14 @@ public class Mecanico {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
     }
 
     public String getRua() {
