@@ -1,12 +1,28 @@
 package br.edu.iff.pooa20181.trabalho03_2018_1.model;
 
-public class Mecanico {
+import java.io.Serializable;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Mecanico extends RealmObject implements Serializable {
+
+    @PrimaryKey
+    private int id;
     private String nome, funcao, rua, bairro, dataDeNascimento, municipio;
     private Double latitude, longitude;
 
     public Mecanico(){
 
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {

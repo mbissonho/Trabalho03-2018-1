@@ -14,8 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.iff.pooa20181.trabalho03_2018_1.model.Mecanico;
+import io.realm.Realm;
 
 public class MecanicoListActivity extends AppCompatActivity implements ClickRecyclerViewListener {
+
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +27,14 @@ public class MecanicoListActivity extends AppCompatActivity implements ClickRecy
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        this.realm = Realm.getDefaultInstance();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MecanicoListActivity.this, ManageMecanicoActivity.class);
+                intent.putExtra("id",0);
                 startActivity(intent);
             }
         });
@@ -44,23 +50,20 @@ public class MecanicoListActivity extends AppCompatActivity implements ClickRecy
 
 
     public List<Mecanico> getMecanicos(){
-
-        ArrayList<Mecanico> list = new ArrayList<>();
-
-        Mecanico mecanico = new Mecanico();
-        mecanico.setNome("Bruno");
-        mecanico.setFuncao("Mecânico");
-
-        list.add(mecanico);
-
-        return list;
+        return (List) this.realm.where(Mecanico.class).findAll();
     }
 
     @Override
     public void onClick(Object object) {
-
+        Mecanico m = (Mecanico) object;
+        Intent intent = new Intent(MecanicoListActivity.this, ManageMecanicoActivity.class);
+        intent.putExtra("id", m.getId());
+        startActivity(intent);
     }
 
-
+    public void finish(){
+        super.finish();
+        this.realm.close();
+    }
 
 }
