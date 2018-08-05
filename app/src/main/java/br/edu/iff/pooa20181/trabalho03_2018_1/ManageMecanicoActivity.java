@@ -40,6 +40,7 @@ public class ManageMecanicoActivity extends AppCompatActivity {
 
             this.tNome.setText(this.mecanico.getNome());
             this.tFuncao.setText(this.mecanico.getFuncao());
+            this.tDataDeNascimento.setText(this.mecanico.getDataDeNascimento());
             this.tRua.setText(this.mecanico.getRua());
             this.tBairro.setText(this.mecanico.getBairro());
             this.tMunicipio.setText(this.mecanico.getMunicipio());
@@ -100,6 +101,7 @@ public class ManageMecanicoActivity extends AppCompatActivity {
     private void bind(){
         this.tNome = findViewById(R.id.tNome);
         this.tFuncao = findViewById(R.id.tFuncao);
+        this.tDataDeNascimento = findViewById(R.id.tDataDeNascimento);
         this.tRua = findViewById(R.id.tRua);
         this.tBairro = findViewById(R.id.tBairro);
         this.tMunicipio = findViewById(R.id.tMunicipio);
@@ -111,6 +113,7 @@ public class ManageMecanicoActivity extends AppCompatActivity {
     private void populate(Mecanico mecanico){
         mecanico.setNome(this.tNome.getText().toString());
         mecanico.setFuncao(this.tFuncao.getText().toString());
+        mecanico.setDataDeNascimento(this.tDataDeNascimento.getText().toString());
         mecanico.setRua(this.tRua.getText().toString());
         mecanico.setBairro(this.tBairro.getText().toString());
         mecanico.setMunicipio(this.tMunicipio.getText().toString());

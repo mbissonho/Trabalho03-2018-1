@@ -14,9 +14,13 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.iff.pooa20181.trabalho03_2018_1.model.Mecanico;
 import br.edu.iff.pooa20181.trabalho03_2018_1.model.Oficina;
+import io.realm.Realm;
 
 public class OficinaListActivity extends AppCompatActivity implements ClickRecyclerViewListener {
+
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +29,14 @@ public class OficinaListActivity extends AppCompatActivity implements ClickRecyc
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarr);
         setSupportActionBar(toolbar);
 
+        this.realm = Realm.getDefaultInstance();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabb);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(OficinaListActivity.this, ManageOficinaActivity.class);
+                intent.putExtra("id",0);
                 startActivity(intent);
             }
         });
@@ -44,16 +51,7 @@ public class OficinaListActivity extends AppCompatActivity implements ClickRecyc
 
 
     public List<Oficina> getOficinas(){
-
-        ArrayList<Oficina> list = new ArrayList<>();
-
-        Oficina oficina = new Oficina();
-        oficina.setNome("Nova");
-        oficina.setRua("Marechal Deodoro");
-
-        list.add(oficina);
-
-        return list;
+        return (List) this.realm.where(Oficina.class).findAll();
     }
 
     @Override
