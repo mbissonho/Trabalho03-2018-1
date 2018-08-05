@@ -56,6 +56,9 @@ public class OficinaListActivity extends AppCompatActivity implements ClickRecyc
 
     @Override
     public void onClick(Object object) {
-
+        Oficina o = (Oficina) object;
+        Intent intent = new Intent(OficinaListActivity.this, ManageOficinaActivity.class);
+        intent.putExtra("id", o.getId());
+        startActivity(intent);
     }
 }

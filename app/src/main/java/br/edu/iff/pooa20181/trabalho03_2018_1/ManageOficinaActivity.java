@@ -113,12 +113,27 @@ public class ManageOficinaActivity extends AppCompatActivity {
         oficina.setMunicipio(this.tMunicipio.getText().toString());
     }
 
-    private void alterar(){
+    private void alterar() {
+        realm.beginTransaction();
 
+        populate(this.oficina);
+
+        realm.copyToRealm(this.oficina);
+        realm.commitTransaction();
+        realm.close();
+
+        Toast.makeText(this,"Oficina Alterada!", Toast.LENGTH_SHORT).show();
+        this.finish();
     }
 
-    private void deletar(){
+    private void deletar() {
+        realm.beginTransaction();
+        this.oficina.deleteFromRealm();
+        realm.commitTransaction();
+        realm.close();
 
+        Toast.makeText(this,"Oficina Excluída!", Toast.LENGTH_SHORT).show();
+        this.finish();
     }
 
 }
