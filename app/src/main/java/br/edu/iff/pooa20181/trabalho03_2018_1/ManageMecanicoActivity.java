@@ -71,8 +71,6 @@ public class ManageMecanicoActivity extends AppCompatActivity {
                 ManageMecanicoActivity.this.deletar();
             }
         });
-
-
     }
 
     private void salvar() {
@@ -82,7 +80,6 @@ public class ManageMecanicoActivity extends AppCompatActivity {
         if(this.realm.where(Mecanico.class).max("id") != null){
             nextID = this.realm.where(Mecanico.class).max("id").intValue() + 1;
         }
-
 
         this.realm.beginTransaction();
 
@@ -120,9 +117,26 @@ public class ManageMecanicoActivity extends AppCompatActivity {
     }
 
     private void alterar() {
+        realm.beginTransaction();
+
+        populate(this.mecanico);
+
+        realm.copyToRealm(this.mecanico);
+        realm.commitTransaction();
+        realm.close();
+
+        Toast.makeText(this,"Mecânico Alterado!", Toast.LENGTH_SHORT).show();
+        this.finish();
     }
 
     private void deletar() {
+        realm.beginTransaction();
+        this.mecanico.deleteFromRealm();
+        realm.commitTransaction();
+        realm.close();
+
+        Toast.makeText(this,"Mecânico Excluído!", Toast.LENGTH_SHORT).show();
+        this.finish();
     }
 
 }
