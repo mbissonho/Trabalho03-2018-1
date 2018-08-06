@@ -48,7 +48,7 @@ public class ViewMecanicoActivity extends FragmentActivity implements OnMapReady
 
     private Realm realm;
     private int id;
-    private Mecanico mecanico;
+    private Mecanico mecanico = null;
 
     private TextView lNome, lFuncao;
 
@@ -121,22 +121,12 @@ public class ViewMecanicoActivity extends FragmentActivity implements OnMapReady
             }
         }
 
-        this.setLocal(this.mecanico.getRua());
+        this.setLocal(this.mecanico);
     }
 
-    private void setLocal(String local){
-        if (local != null && !local.equals("")) {
-            List<Address> addressList = null;
-            Geocoder geocoder = new Geocoder(ViewMecanicoActivity.this);
-            try {
-                addressList = geocoder.getFromLocationName(local, 1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            Address address = addressList.get(0);
-            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-
+    private void setLocal(Mecanico mecanico){
+        if (mecanico != null) {
+            LatLng latLng = new LatLng(mecanico.getLatitude(), mecanico.getLongitude());
             this.map.addMarker(new MarkerOptions().position(latLng).title("from geocoder"));
             this.map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,18.0f));
         }

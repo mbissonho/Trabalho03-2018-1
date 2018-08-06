@@ -1,6 +1,8 @@
 package br.edu.iff.pooa20181.trabalho03_2018_1;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.util.List;
 
 import br.edu.iff.pooa20181.trabalho03_2018_1.model.Mecanico;
 import io.realm.Realm;
@@ -117,6 +122,21 @@ public class ManageMecanicoActivity extends AppCompatActivity {
         mecanico.setRua(this.tRua.getText().toString());
         mecanico.setBairro(this.tBairro.getText().toString());
         mecanico.setMunicipio(this.tMunicipio.getText().toString());
+
+        if (mecanico.getRua() != null && !mecanico.getRua().equals("")) {
+            List<Address> addressList = null;
+            Geocoder geocoder = new Geocoder(ManageMecanicoActivity.this);
+            try {
+                addressList = geocoder.getFromLocationName(mecanico.getRua(), 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Address address = addressList.get(0);
+            mecanico.setLatitude(address.getLatitude());
+            mecanico.setLongitude(address.getLongitude());
+        }
+
     }
 
     private void alterar() {
