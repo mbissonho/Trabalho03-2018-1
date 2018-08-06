@@ -1,6 +1,8 @@
 package br.edu.iff.pooa20181.trabalho03_2018_1;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.util.List;
 
 import br.edu.iff.pooa20181.trabalho03_2018_1.model.Mecanico;
 import br.edu.iff.pooa20181.trabalho03_2018_1.model.Oficina;
@@ -111,6 +116,21 @@ public class ManageOficinaActivity extends AppCompatActivity {
         oficina.setRua(this.tRua.getText().toString());
         oficina.setBairro(this.tBairro.getText().toString());
         oficina.setMunicipio(this.tMunicipio.getText().toString());
+
+        if (oficina.getRua() != null && !oficina.getRua().equals("")) {
+            List<Address> addressList = null;
+            Geocoder geocoder = new Geocoder(ManageOficinaActivity.this);
+            try {
+                addressList = geocoder.getFromLocationName(oficina.getRua(), 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Address address = addressList.get(0);
+            oficina.setLatitude(address.getLatitude());
+            oficina.setLongitude(address.getLongitude());
+        }
+
     }
 
     private void alterar() {

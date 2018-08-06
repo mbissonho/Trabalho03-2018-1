@@ -49,7 +49,7 @@ public class ViewOficinaActivity extends FragmentActivity implements OnMapReadyC
 
     private Realm realm;
     private int id;
-    private Oficina oficina;
+    private Oficina oficina = null;
 
     private TextView lNome, lRua;
 
@@ -121,22 +121,12 @@ public class ViewOficinaActivity extends FragmentActivity implements OnMapReadyC
             }
         }
 
-        this.setLocal(this.oficina.getRua());
+        this.setLocal(this.oficina);
     }
 
-    private void setLocal(String local){
-        if (local != null && !local.equals("")) {
-            List<Address> addressList = null;
-            Geocoder geocoder = new Geocoder(ViewOficinaActivity.this);
-            try {
-                addressList = geocoder.getFromLocationName(local, 1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            Address address = addressList.get(0);
-            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-
+    private void setLocal(Oficina oficina){
+        if (oficina != null){
+            LatLng latLng = new LatLng(oficina.getLatitude(), oficina.getLongitude());
             this.map.addMarker(new MarkerOptions().position(latLng).title("from geocoder"));
             this.map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,18.0f));
         }
