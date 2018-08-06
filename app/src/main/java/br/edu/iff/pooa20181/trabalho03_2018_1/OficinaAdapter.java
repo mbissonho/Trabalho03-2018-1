@@ -1,16 +1,17 @@
 package br.edu.iff.pooa20181.trabalho03_2018_1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
 
-import br.edu.iff.pooa20181.trabalho03_2018_1.model.Mecanico;
 import br.edu.iff.pooa20181.trabalho03_2018_1.model.Oficina;
 
 public class OficinaAdapter extends RecyclerView.Adapter {
@@ -44,8 +45,8 @@ public class OficinaAdapter extends RecyclerView.Adapter {
 
         Oficina oficina = this.oficinas.get(position);
 
-        oficinaHolder.nome.setText(oficina.getNome());
-        oficinaHolder.rua.setText(oficina.getRua());
+        oficinaHolder.setOficina(oficina);
+        oficinaHolder.bind();
     }
 
 
@@ -57,14 +58,16 @@ public class OficinaAdapter extends RecyclerView.Adapter {
 
     public class OficinaHolder extends RecyclerView.ViewHolder {
 
+        private Oficina oficina;
         private TextView nome, rua;
-
+        private ImageButton btnVer;
 
         public OficinaHolder(View view){
             super(view);
 
             this.nome = view.findViewById(R.id.lNomeOficina);
             this.rua = view.findViewById(R.id.lRuaOficina);
+            this.btnVer = view.findViewById(R.id.btnVer);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -72,6 +75,26 @@ public class OficinaAdapter extends RecyclerView.Adapter {
                     clickRecyclerViewListener.onClick(oficinas.get(getLayoutPosition()));
                 }
             });
+
+
+            this.btnVer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(OficinaAdapter.this.ctx, ViewOficinaActivity.class);
+                    intent.putExtra("id",OficinaHolder.this.oficina.getId());
+                    OficinaAdapter.this.ctx.startActivity(intent);
+                }
+            });
+
+        }
+
+        public void setOficina(Oficina oficina){
+            this.oficina = oficina;
+        }
+
+        public void bind(){
+            this.nome.setText(this.oficina.getNome());
+            this.rua.setText(this.oficina.getRua());
         }
 
     }

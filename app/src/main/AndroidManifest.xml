@@ -34,12 +34,13 @@
             android:name=".ManageMecanicoActivity"
             android:label="ManageMecanicoActivity" />
         <activity android:name=".ManageOficinaActivity" />
-        <activity android:name=".ViewMecanicoActivity"></activity>
+        <activity android:name=".ViewMecanicoActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity android:name=".ViewOficinaActivity"></activity>
     </application>
 
 </manifest>

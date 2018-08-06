@@ -48,9 +48,6 @@ public class MecanicoAdapter extends RecyclerView.Adapter{
 
         mecanicoHolder.setMecanico(mecanico);
         mecanicoHolder.bind();
-
-        //mecanicoHolder.nome.setText(mecanico.getNome());
-        //mecanicoHolder.funcao.setText(mecanico.getFuncao());
     }
 
 
