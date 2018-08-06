@@ -3,4 +3,5 @@
     <string name="title_activity_mecanico_list">MecanicoListActivity</string>
     <string name="title_activity_oficina_list">OficinaListActivity</string>
     <string name="title_activity_manage_oficina">ManageOficinaActivity</string>
+    <string name="title_activity_view_mecanico">ViewMecanicoActivity</string>
 </resources>

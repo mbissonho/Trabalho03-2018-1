@@ -1,11 +1,14 @@
 package br.edu.iff.pooa20181.trabalho03_2018_1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -43,8 +46,11 @@ public class MecanicoAdapter extends RecyclerView.Adapter{
 
         Mecanico mecanico = this.mecanicos.get(position);
 
-        mecanicoHolder.nome.setText(mecanico.getNome());
-        mecanicoHolder.funcao.setText(mecanico.getFuncao());
+        mecanicoHolder.setMecanico(mecanico);
+        mecanicoHolder.bind();
+
+        //mecanicoHolder.nome.setText(mecanico.getNome());
+        //mecanicoHolder.funcao.setText(mecanico.getFuncao());
     }
 
 
@@ -56,7 +62,9 @@ public class MecanicoAdapter extends RecyclerView.Adapter{
 
     public class MecanicoHolder extends RecyclerView.ViewHolder {
 
+        private Mecanico mecanico;
         private TextView nome, funcao;
+        private ImageButton btnVer;
 
 
         public MecanicoHolder(View view){
@@ -64,6 +72,7 @@ public class MecanicoAdapter extends RecyclerView.Adapter{
 
             this.nome = view.findViewById(R.id.lNomeMecanico);
             this.funcao = view.findViewById(R.id.lFuncaoMecanico);
+            this.btnVer = view.findViewById(R.id.btnVer);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -71,6 +80,25 @@ public class MecanicoAdapter extends RecyclerView.Adapter{
                     clickRecyclerViewListener.onClick(mecanicos.get(getLayoutPosition()));
                 }
             });
+
+            this.btnVer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MecanicoAdapter.this.ctx, ViewMecanicoActivity.class);
+                    intent.putExtra("id",MecanicoHolder.this.mecanico.getId());
+                    MecanicoAdapter.this.ctx.startActivity(intent);
+                }
+            });
+
+        }
+
+        public void setMecanico(Mecanico mecanico){
+            this.mecanico = mecanico;
+        }
+
+        public void bind(){
+            this.nome.setText(this.mecanico.getNome());
+            this.funcao.setText(this.mecanico.getFuncao());
         }
 
     }

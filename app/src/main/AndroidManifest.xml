@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.edu.iff.pooa20181.trabalho03_2018_1">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".Config"
         android:allowBackup="true"
@@ -25,8 +30,16 @@
             android:name=".OficinaListActivity"
             android:label="OficinaListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ManageMecanicoActivity" android:label="ManageMecanicoActivity" />
-        <activity android:name=".ManageOficinaActivity"></activity>
+        <activity
+            android:name=".ManageMecanicoActivity"
+            android:label="ManageMecanicoActivity" />
+        <activity android:name=".ManageOficinaActivity" />
+        <activity android:name=".ViewMecanicoActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
     </application>
 
 </manifest>
