@@ -12,6 +12,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ZoomControls;
@@ -38,6 +40,7 @@ import io.realm.Realm;
 
 public class ViewOficinaActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    private Button toggle, ret;
     private GoogleMap map;
     ZoomControls zoomCtrl;
     Double deviceLat = null, deviceLon = null;
@@ -88,6 +91,45 @@ public class ViewOficinaActivity extends FragmentActivity implements OnMapReadyC
             }
         };
 
+        this.zoomCtrl = findViewById(R.id.zoomCtrl);
+        this.zoomCtrl.setOnZoomOutClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                map.animateCamera(CameraUpdateFactory.zoomOut());
+            }
+        });
+
+        this.zoomCtrl.setOnZoomInClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                map.animateCamera(CameraUpdateFactory.zoomIn());
+
+            }
+        });
+
+
+        this.toggle = findViewById(R.id.btnToggle);
+        this.toggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (map.getMapType() == GoogleMap.MAP_TYPE_NORMAL) {
+                    map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                    toggle.setText("NORM");
+                } else {
+                    map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                    toggle.setText("SAT");
+                }
+
+            }
+        });
+
+        this.ret = findViewById(R.id.btnRet);
+        this.ret.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ViewOficinaActivity.this.setLocal(ViewOficinaActivity.this.oficina);
+            }
+        });
 
         this.bindAndSet();
     }
