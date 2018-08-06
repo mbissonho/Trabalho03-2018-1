@@ -1,4 +1,4 @@
-package br.edu.iff.pooa20181.trabalho03_2018_1;
+package br.edu.iff.pooa20181.trabalho03_2018_1.view;
 
 import android.Manifest;
 import android.content.Intent;
@@ -10,8 +10,8 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ZoomControls;
@@ -31,11 +31,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 
+import br.edu.iff.pooa20181.trabalho03_2018_1.R;
 import br.edu.iff.pooa20181.trabalho03_2018_1.model.Mecanico;
-import br.edu.iff.pooa20181.trabalho03_2018_1.model.Oficina;
 import io.realm.Realm;
 
-public class ViewOficinaActivity extends FragmentActivity implements OnMapReadyCallback {
+public class ViewMecanicoActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap map;
     ZoomControls zoomCtrl;
@@ -49,16 +49,17 @@ public class ViewOficinaActivity extends FragmentActivity implements OnMapReadyC
 
     private Realm realm;
     private int id;
-    private Oficina oficina = null;
+    private Mecanico mecanico = null;
 
-    private TextView lNome, lRua;
+    private TextView lNome, lFuncao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_oficina);
+        setContentView(R.layout.activity_view_mecanico);
+
         SupportMapFragment mapFragment = (SupportMapFragment)
-                getSupportFragmentManager().findFragmentById(R.id.map);
+        getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         this.fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -72,7 +73,7 @@ public class ViewOficinaActivity extends FragmentActivity implements OnMapReadyC
         this.id = (int) intent.getSerializableExtra("id");
         this.realm = Realm.getDefaultInstance();
 
-        this.oficina = realm.where(Oficina.class).equalTo("id",this.id).findFirst();
+        this.mecanico = realm.where(Mecanico.class).equalTo("id",this.id).findFirst();
 
         this.locationCallback = new LocationCallback() {
             @Override
@@ -94,11 +95,11 @@ public class ViewOficinaActivity extends FragmentActivity implements OnMapReadyC
     private void bindAndSet(){
         //bind
         this.lNome = findViewById(R.id.lNome);
-        this.lRua = findViewById(R.id.lRua);
+        this.lFuncao = findViewById(R.id.lFuncao);
 
         //set
-        this.lNome.setText(this.oficina.getNome());
-        this.lRua.setText(this.oficina.getRua());
+        this.lNome.setText(this.mecanico.getNome());
+        this.lFuncao.setText(this.mecanico.getFuncao());
     }
 
     @Override
@@ -121,12 +122,12 @@ public class ViewOficinaActivity extends FragmentActivity implements OnMapReadyC
             }
         }
 
-        this.setLocal(this.oficina);
+        this.setLocal(this.mecanico);
     }
 
-    private void setLocal(Oficina oficina){
-        if (oficina != null){
-            LatLng latLng = new LatLng(oficina.getLatitude(), oficina.getLongitude());
+    private void setLocal(Mecanico mecanico){
+        if (mecanico != null) {
+            LatLng latLng = new LatLng(mecanico.getLatitude(), mecanico.getLongitude());
             this.map.addMarker(new MarkerOptions().position(latLng).title("from geocoder"));
             this.map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,18.0f));
         }
@@ -178,4 +179,5 @@ public class ViewOficinaActivity extends FragmentActivity implements OnMapReadyC
         }
 
     }
+
 }

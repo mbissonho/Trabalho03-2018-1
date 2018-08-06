@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,24 +23,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MecanicoListActivity"
+            android:name=".view.MecanicoListActivity"
             android:label="@string/title_activity_mecanico_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".OficinaListActivity"
+            android:name=".view.OficinaListActivity"
             android:label="OficinaListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ManageMecanicoActivity"
+            android:name=".view.ManageMecanicoActivity"
             android:label="ManageMecanicoActivity" />
-        <activity android:name=".ManageOficinaActivity" />
-        <activity android:name=".ViewMecanicoActivity" />
+        <activity android:name=".view.ManageOficinaActivity" />
+        <activity android:name=".view.ViewMecanicoActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".ViewOficinaActivity"></activity>
+        <activity android:name=".view.ViewOficinaActivity"></activity>
     </application>
 
 </manifest>

@@ -47,7 +47,7 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="419dp"
-            tools:context=".ViewOficinaActivity" />
+            tools:context=".view.ViewOficinaActivity" />
 
         <ZoomControls
             android:id="@+id/zoomCtrl"

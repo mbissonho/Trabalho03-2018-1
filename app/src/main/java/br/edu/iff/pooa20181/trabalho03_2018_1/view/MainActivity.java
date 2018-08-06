@@ -1,11 +1,12 @@
-package br.edu.iff.pooa20181.trabalho03_2018_1;
+package br.edu.iff.pooa20181.trabalho03_2018_1.view;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+
+import br.edu.iff.pooa20181.trabalho03_2018_1.R;
 
 public class MainActivity extends AppCompatActivity {
 

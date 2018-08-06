@@ -1,4 +1,4 @@
-package br.edu.iff.pooa20181.trabalho03_2018_1;
+package br.edu.iff.pooa20181.trabalho03_2018_1.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import br.edu.iff.pooa20181.trabalho03_2018_1.owninterface.ClickRecyclerViewListener;
+import br.edu.iff.pooa20181.trabalho03_2018_1.R;
 import br.edu.iff.pooa20181.trabalho03_2018_1.model.Oficina;
+import br.edu.iff.pooa20181.trabalho03_2018_1.view.ViewOficinaActivity;
 
 public class OficinaAdapter extends RecyclerView.Adapter {
 

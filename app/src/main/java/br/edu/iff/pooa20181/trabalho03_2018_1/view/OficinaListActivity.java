@@ -1,20 +1,19 @@
-package br.edu.iff.pooa20181.trabalho03_2018_1;
+package br.edu.iff.pooa20181.trabalho03_2018_1.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.iff.pooa20181.trabalho03_2018_1.model.Mecanico;
+import br.edu.iff.pooa20181.trabalho03_2018_1.owninterface.ClickRecyclerViewListener;
+import br.edu.iff.pooa20181.trabalho03_2018_1.adapter.OficinaAdapter;
+import br.edu.iff.pooa20181.trabalho03_2018_1.R;
 import br.edu.iff.pooa20181.trabalho03_2018_1.model.Oficina;
 import io.realm.Realm;
 

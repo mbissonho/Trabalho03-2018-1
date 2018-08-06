@@ -1,4 +1,4 @@
-package br.edu.iff.pooa20181.trabalho03_2018_1;
+package br.edu.iff.pooa20181.trabalho03_2018_1.view;
 
 import android.content.Intent;
 import android.location.Address;
@@ -14,6 +14,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.List;
 
+import br.edu.iff.pooa20181.trabalho03_2018_1.R;
 import br.edu.iff.pooa20181.trabalho03_2018_1.model.Mecanico;
 import br.edu.iff.pooa20181.trabalho03_2018_1.model.Oficina;
 import io.realm.Realm;

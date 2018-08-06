@@ -1,4 +1,4 @@
-package br.edu.iff.pooa20181.trabalho03_2018_1;
+package br.edu.iff.pooa20181.trabalho03_2018_1.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,13 +7,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
 
+import br.edu.iff.pooa20181.trabalho03_2018_1.owninterface.ClickRecyclerViewListener;
+import br.edu.iff.pooa20181.trabalho03_2018_1.R;
 import br.edu.iff.pooa20181.trabalho03_2018_1.model.Mecanico;
+import br.edu.iff.pooa20181.trabalho03_2018_1.view.ViewMecanicoActivity;
 
 public class MecanicoAdapter extends RecyclerView.Adapter{
 
